@@ -1,8 +1,10 @@
 const fastify = require("fastify");
 const swaggerUI = require("fastify-serve-swagger-ui");
 const usersRouter = require("./resources/users/user.router");
+const boardsRouter = require("./resources/boards/board.router");
+const tasksRouter = require("./resources/tasks/task.router");
 
-const app = fastify({ logger: true });
+const app = fastify();
 
 app.register(swaggerUI, {
   path: "/doc",
@@ -17,5 +19,7 @@ app.get('/', (req, res) => {
 });
 
 app.register(usersRouter);
+app.register(boardsRouter);
+app.register(tasksRouter);
 
 module.exports = { app };

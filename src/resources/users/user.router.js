@@ -1,4 +1,5 @@
 const usersService = require("./user.service");
+const tasksService = require("../tasks/task.service");
 
 const usersRouter = (fastify, options, done) => {
   fastify.get(
@@ -14,9 +15,9 @@ const usersRouter = (fastify, options, done) => {
   );
 
   fastify.get(
-    "/users/:id",
+    "/users/:userId",
     async (req, res) => {
-      const userId = req.query.id;
+      const {userId} = req.params;
       const user = usersService.getUserById(userId);
 
       if (user) {
@@ -36,23 +37,38 @@ const usersRouter = (fastify, options, done) => {
   fastify.post("/users",
     async (req, res) => {
       const createdUser = usersService.addUser(req.body);
+      const userWithoutPassword = usersService.getUserById(createdUser.id);
 
       res
         .status(201)
         .header("Content-Type", "application/json; charset=utf-8")
-        .send(JSON.stringify(createdUser));
+        .send(userWithoutPassword);
     });
 
   fastify.delete(
-    "/users/:id",
+    "/users/:userId",
     async (req, res) => {
-      usersService.deleteUser(req.query.id);
+      const {userId} = req.query;
+      usersService.deleteUser(userId);
+      tasksService.unassignUser(userId);
 
       res
         .status(200)
         .send()
     }
-  )
+  );
+  
+  fastify.put(
+    "/users/:userId",
+    async (req, res) => {
+      usersService.updateUser(req.body);
+
+      res
+        .status(200)
+        .header("Content-Type", "application/json; charset=utf-8")
+        .send();
+    }
+  );
 
   done();
 };
