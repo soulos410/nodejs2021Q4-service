@@ -1,0 +1,17 @@
+### get users list
+GET http://localhost:4000/users
+Content-Type: application/json
+
+### add new user
+POST http://localhost:4000/users
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "password": "123456",
+  "login": "TEST"
+}
+
+### get user by id
+GET http://localhost:4000/users/?id=123
+Content-Type: application/json
