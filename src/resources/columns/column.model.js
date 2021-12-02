@@ -4,7 +4,7 @@ class Column {
   constructor(
     {
       id = uuid.v4(),
-      title = 'BOARD',
+      title = 'Column',
       order = 0,
     } = {}) {
     this.id = id;

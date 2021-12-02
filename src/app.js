@@ -14,10 +14,6 @@ app.register(fastifySwagger, {
   },
 });
 
-app.get('/', (req, res) => {
-  res.send('Service is running!');
-});
-
 app.register(usersRouter);
 app.register(boardsRouter);
 app.register(tasksRouter);
