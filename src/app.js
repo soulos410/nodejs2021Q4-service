@@ -1,16 +1,16 @@
-const fastify = require("fastify");
-const swaggerUI = require("fastify-serve-swagger-ui");
+const app = require("fastify")();
+const {fastifySwagger} = require("fastify-swagger");
+const path = require("path");
 const usersRouter = require("./resources/users/user.router");
 const boardsRouter = require("./resources/boards/board.router");
 const tasksRouter = require("./resources/tasks/task.router");
 
-const app = fastify();
-
-app.register(swaggerUI, {
-  path: "/doc",
+app.register(fastifySwagger, {
+  exposeRoute: true,
+  routePrefix: '/doc',
+  mode: 'static',
   specification: {
-    type: "url",
-    path: "../../doc/api.yaml",
+    path: path.join(__dirname, '../doc/api.yaml'),
   },
 });
 

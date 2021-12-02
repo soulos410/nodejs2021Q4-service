@@ -31,6 +31,10 @@ class Task {
   unassignUser() {
     this.userId = null;
   }
+
+  removeBoard() {
+    this.boardId = null;
+  }
 }
 
 module.exports = Task;

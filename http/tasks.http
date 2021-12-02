@@ -1,0 +1,3 @@
+### get tasks list
+GET http://localhost:4000/boards/be4ec21e-1942-4f52-b017-3dd68ec3724b/tasks
+Content-Type: application/json

@@ -1,4 +1,5 @@
 const boardsService = require("./board.service");
+const taskService = require("../tasks/task.service");
 
 const boardsRouter = (fastify, options, done) => {
   fastify.get(
@@ -68,7 +69,9 @@ const boardsRouter = (fastify, options, done) => {
     "/boards/:boardId",
     async (req, res) => {
       try {
-        boardsService.deleteBoardById(req.params.boardId);
+        const {boardId} = req.params;
+        boardsService.deleteBoardById(boardId);
+        taskService.removeBoardTasks(boardId);
 
         res
           .status(200)

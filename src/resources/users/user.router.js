@@ -48,7 +48,8 @@ const usersRouter = (fastify, options, done) => {
   fastify.delete(
     "/users/:userId",
     async (req, res) => {
-      const {userId} = req.query;
+      const {userId} = req.params;
+
       usersService.deleteUser(userId);
       tasksService.unassignUser(userId);
 
