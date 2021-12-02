@@ -1,0 +1,30 @@
+### get users list
+GET http://localhost:4000/users
+Content-Type: application/json
+
+### add new user
+POST http://localhost:4000/users
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "password": "123456",
+  "login": "TEST"
+}
+
+### get user by id
+GET http://localhost:4000/users/29afe87e-19a3-4a13-8506-8ad553954a9a
+Content-Type: application/json
+
+### update user by id
+PUT http://localhost:4000/users/8bfd0d98-697c-4f03-bbe3-3584f62f159e
+Content-Type: application/json
+
+{
+  "name": "newName",
+  "id": "8bfd0d98-697c-4f03-bbe3-3584f62f159e"
+}
+
+### delete user
+DELETE http://localhost:4000/users/e3afe27e-e95a-4791-baaf-dfdf4d19a4dc
+Content-Type: application/json

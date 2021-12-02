@@ -1,0 +1,25 @@
+### get boards list
+GET http://localhost:4000/boards
+Content-Type: application/json
+
+### add new board
+POST http://localhost:4000/boards
+Content-Type: application/json
+
+{
+  "title": "Board123",
+  "columns": []
+}
+
+### get board by id
+GET http://localhost:4000/boards/8b78d88a-e731-4e3e-aab7-dea1be6447e3
+Content-Type: application/json
+
+### update board by id
+PUT http://localhost:4000/boards/8bfd0d98-697c-4f03-bbe3-3584f62f159e
+Content-Type: application/json
+
+{
+  "title": "newName",
+  "id": "8bfd0d98-697c-4f03-bbe3-3584f62f159e"
+}
